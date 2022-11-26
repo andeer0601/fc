@@ -1,0 +1,6 @@
+{
+	"editor.codeLensFontSize": 14,
+	"editor.codeActionsOnSave": {
+	"source.organizeImports": true
+	}
+}
