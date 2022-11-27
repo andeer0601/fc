@@ -13,8 +13,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name text, 
             nick text, 
-            email text UNIQUE,
-            CONSTRAINT email_unique UNIQUE (email)
+            email text
             )`,
         (err) => {
             if (err) {
@@ -29,8 +28,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             type INTEGER, 
             value REAL, 
-            recurrent INTEGER,
-			months INTEGER
+            recurrent BOOLEAN,
+			months INTEGER,
+            date DATE DEFAULT (datetime('now','localtime'))
             )`,
         (err) => {
             if (err) {
@@ -38,7 +38,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             }else{
                 console.log("Table Created");
                 var insert = 'INSERT INTO movimentations (type, value, recurrent, months) VALUES (?,?,?,?)'
-                db.run(insert, [2, 1500.00, 1, 16])
+                db.run(insert, [2, 1500.00, true, 16])
             }
         });  
     }
